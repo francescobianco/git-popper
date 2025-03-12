@@ -1,5 +1,5 @@
 [package]
-name = "gitpopper"
+name = "git-popper"
 version = "0.1.0"
 edition = "2022"
 

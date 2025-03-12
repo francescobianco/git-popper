@@ -1,0 +1,4 @@
+
+FROM https://github.com/francescobianco/git-popper.git
+
+WORKDIR tests/fixtures/simple-remote

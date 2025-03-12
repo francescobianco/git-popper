@@ -1,4 +1,5 @@
 
+module init
 
 main() {
   local list
@@ -28,27 +29,24 @@ main() {
       shift
     done || true
 
-    if [ -n "$MY_HOSTS" ]; then
-      hosts=$MY_HOSTS
-    else
-      hosts=$HOME/.hosts
-    fi
+    gitpopper_file="$PWD/.gitpopper"
 
-    if [ -n "$list" ]; then
-      my_print_list "$hosts"
-      exit
+    if [ ! -f "${gitpopper_file}" ]; then
+      echo "No .gitpopper file found in the current directory"
+      exit 1
     fi
 
     if [ "$#" -eq 0 ]; then
       echo "No arguments supplied"
+      exit 1
     fi
 
     case "$1" in
+      init)
+        gitpopper_init "${gitpopper_file}"
+        ;;
       sync)
         gitpopper_sync
-        ;;
-      init)
-        gitpopper_init
         ;;
     esac
 }

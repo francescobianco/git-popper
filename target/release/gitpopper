@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# @BP010: Release metadata
+# @package: gitpopper
+# @build_type: bin
+# @build_with: Mush 0.2.0 (2025-02-01 develop)
+# @build_date: 2025-03-12T13:48:26Z
+set -e
+use() { return 0; }
+extern() { return 0; }
+legacy() { return 0; }
+module() { return 0; }
+public() { return 0; }
+embed() { return 0; }
+## BP004: Compile the entrypoint
+
+module init
+
+main() {
+  local list
+
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        -*)
+          case "$1" in
+            --list)
+              list=true
+              shift
+              ;;
+            -o|--output)
+              echo "Handling $1 with value: $2"
+              shift
+              ;;
+            *)
+              echo "Unknown option: $1" >&2
+              exit 1
+              ;;
+        esac
+          ;;
+        *)
+          break
+          ;;
+      esac
+      shift
+    done || true
+
+    gitpopper_file="$PWD/.gitpopper"
+
+    if [ "$#" -eq 0 ]; then
+      echo "No arguments supplied"
+      exit 1
+    fi
+
+    case "$1" in
+      init)
+        gitpopper_init "${gitpopper_file}"
+        ;;
+      sync)
+        gitpopper_sync
+        ;;
+    esac
+}
+gitpopper_init() {
+  local gitpopper_file
+  local repository
+
+  gitpopper_file="$1"
+
+  echo "Initializing gitpopper"
+
+  while IFS= read -r line || [[ -n "${line}" ]]; do
+    ((row=row+1))
+    [[ -z "${line}" ]] && continue
+    [[ "${line::1}" == "#" ]] && continue
+    #echo ${line}
+    instruction=$(echo "${line}" | cut -d" " -f1)
+    case "${instruction}" in
+        FROM)
+          repository=$(echo "${line}" | cut -d" " -f2)
+          echo "FROM: $repository"
+          ;;
+      esac
+  done < "${gitpopper_file}"
+}
+## BP005: Execute the entrypoint
+main "$@"
