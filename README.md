@@ -1,39 +1,64 @@
-# 🎩 git-popper - Minimalistic Side Repo Manager
+<div align="center">
+  <h1>🎩 git-popper</h1>
+  <p><strong>Minimalist Side Repository Manager</strong></p>
+  <p>
+    <a href="https://github.com/yourusername/git-popper/stargazers"><img src="https://img.shields.io/github/stars/yourusername/git-popper" alt="Stars"></a>
+    <a href="https://github.com/yourusername/git-popper/issues"><img src="https://img.shields.io/github/issues/yourusername/git-popper" alt="Issues"></a>
+    <a href="https://github.com/yourusername/git-popper/blob/main/LICENSE"><img src="https://img.shields.io/github/license/yourusername/git-popper" alt="License"></a>
+    <a href="https://github.com/yourusername/git-popper/releases"><img src="https://img.shields.io/github/v/release/yourusername/git-popper" alt="Release"></a>
+  </p>
+</div>
 
-**git-popper** is a tiny yet powerful command-line tool to manage a secondary repository alongside your main repository. It helps sync specific files and directories, ensuring that critical or sensitive data is stored securely.
-
----
+**git-popper** is a lightweight yet powerful command-line tool for managing a secondary repository alongside your main repository. It helps synchronize specific files and directories, ensuring that critical or sensitive data is stored securely while maintaining seamless workflow integration.
 
 ## ✨ Features
 
-* ✔ **Side Repository Integration** - Attach a secondary repo to your main project.
-* ✔ **Selective File Synchronization** - Define specific files or directories via `.gitpopper`.
-* ✔ **Prevent Data Loss** - Store sensitive files safely to avoid accidental deletion.
-* ✔ **Automated Syncing** - Keep your side repository updated with your workflow.
-* ✔ **Centralized Shared Files** - Avoid duplication of common files across projects.
-
----
+* **Side Repository Integration** - Connect a secondary repository to your main project
+* **Selective Synchronization** - Define specific files or directories via `.gitpopper`
+* **Data Loss Prevention** - Store sensitive files securely to prevent accidental deletion
+* **Automated Syncing** - Keep your side repository updated with your workflow
+* **Centralized Shared Files** - Avoid duplication of common files across projects
 
 ## 📦 Installation
 
-To install `git-popper`, copy the script from the `bin` directory and place it in a common executable location:
+### Quick Install (Recommended)
+
+Install git-popper instantly with a single command:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/git-popper/main/bin/git-popper | sudo tee /usr/local/bin/git-popper > /dev/null && sudo chmod +x /usr/local/bin/git-popper
+```
+
+Or, for local user installation (no sudo required):
+
+```sh
+mkdir -p ~/.local/bin
+curl -fsSL https://raw.githubusercontent.com/yourusername/git-popper/main/bin/git-popper -o ~/.local/bin/git-popper && chmod +x ~/.local/bin/git-popper
+# Then add ~/.local/bin to your PATH if not already
+```
+
+### Manual Installation
+
+If you've already cloned the repository:
 
 ```sh
 sudo cp bin/git-popper /usr/local/bin/
-chmod +x /usr/local/bin/git-popper
+sudo chmod +x /usr/local/bin/git-popper
 ```
 
----
+### Package Managers
+
+Coming soon!
 
 ## 🛠️ Usage
 
 Create a `.gitpopper` file in your project root:
 
 ```ini
-## Use as side repo this 
+## Use this as side repository
 FROM https://github.com/your-side-repo.git
 
-## Store and sync local files into this remote directory of the repo
+## Store and sync local files into this remote directory of the repository
 WORKDIR projects/2025/myproject
 
 ## Sync local files into side repo to prevent losing secret files
@@ -42,7 +67,7 @@ ADD .secrets
 ADD Makefile-dev
 ```
 
-Run:
+Execute:
 
 ```sh
 git-popper sync
@@ -50,45 +75,50 @@ git-popper sync
 
 ### 🔧 Commands
 
-- 🏷 **`git-popper sync`** - Sync local files with the side repository.
-- 📥 **`git-popper pull`** - Fetch the latest changes from the side repository.
-- 📤 **`git-popper push`** - Push local updates to the side repository.
-
----
+- **`git-popper sync`** - Synchronize local files with the side repository
+- **`git-popper pull`** - Fetch the latest changes from the side repository
+- **`git-popper push`** - Push local updates to the side repository
+- **`git-popper status`** - Check synchronization status between local and side repository
 
 ## ⚠️ Best Practices
 
-Using `git-popper` with `.gitignore` is **crucial** to:
+Using `git-popper` in conjunction with `.gitignore` is **essential** for:
 
-- 🚫 Prevent **sensitive files** from being committed to the main repo.
-- 🔒 Keep **environment files** protected while still allowing sync with a dedicated repo.
-- 🧹 Maintain **clean repository management** by avoiding clutter.
-
----
+- Preventing **sensitive files** from being committed to the main repository
+- Keeping **environment files** protected while still allowing synchronization with a dedicated repository
+- Ensuring **clean repository management** by avoiding clutter
 
 ## 🔄 Additional Use Cases
 
-💡 Besides managing `.env` and secret files, `git-popper` can be used to:
+Beyond managing `.env` and secret files, `git-popper` can be leveraged for:
 
-* 1️⃣ **Distribute shared scripts** - Store and sync build scripts, CI/CD configs, or utilities without duplication.
-* 2️⃣ **Manage development dependencies separately** - Keep local tools in a side repo instead of cluttering the main repo.
-* 3️⃣ **Track and sync documentation** - Maintain shared docs across multiple projects while keeping them updated centrally.
+1. **Distributing shared scripts** - Store and synchronize build scripts, CI/CD configurations, or utilities without duplication
+2. **Managing development dependencies separately** - Maintain local tools in a side repository instead of bloating the main repository
+3. **Tracking and synchronizing documentation** - Maintain shared documents across multiple projects while updating them centrally
 
----
+## 🚀 Performance
+
+git-popper is designed to be lightweight with minimal dependencies, ensuring:
+
+- Fast synchronization even with large files
+- Low memory footprint
+- Efficient operation on CI/CD pipelines and resource-constrained environments
 
 ## 📜 License
 
-📝 This project is licensed under the MIT License.
-
----
+This project is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
-Pull requests are welcome! Feel free to fork the repository and submit your improvements.
+Contributions are welcome! Please feel free to submit a Pull Request. Check out our [contribution guidelines](CONTRIBUTING.md) for more information.
 
----
+## 🔍 Roadmap
+
+- [ ] Support for multiple side repositories
+- [ ] Web interface for repository management
+- [ ] Integration with popular CI/CD platforms
+- [ ] Advanced conflict resolution
 
 ## 👤 Author
 
 [Your Name](https://github.com/yourusername)
-
