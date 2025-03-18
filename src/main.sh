@@ -1,5 +1,6 @@
 
 module init
+module sync
 
 main() {
   local list
@@ -46,7 +47,8 @@ main() {
         gitpopper_init "${gitpopper_file}"
         ;;
       sync)
-        gitpopper_sync
+        gitpopper_init "${gitpopper_file}"
+        gitpopper_sync "${gitpopper_file}"
         ;;
     esac
 }
