@@ -18,6 +18,8 @@ push: build
 	@git commit -am "New release!" || true
 	@git push
 
+release: push
+
 ## =====
 ## Tests
 ## =====
