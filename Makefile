@@ -1,14 +1,26 @@
-
+## =====
+## Build
+## =====
 
 build:
 	@echo "Building..."
 	@mush build --release
 
-push:
+install: build
+	@mush install --path .
+
+## =======
+## Release
+## =======
+
+push: build
 	@git add .
 	@git commit -am "New release!" || true
 	@git push
 
+## =====
+## Tests
+## =====
 
 test-init: build
 	@cd tests/fixtures/simple-local && ../../../bin/git-popper init
