@@ -14,5 +14,6 @@ test-init: build
 	@cd tests/fixtures/simple-local && ../../../bin/git-popper init
 
 test-sync: build
+	@rm -fr $$HOME/.git-popper/cache || true
 	@cd tests/fixtures/simple-local && ../../../bin/git-popper sync
-	@tree . $$HOME/.git-popper/cache
+	@tree $$HOME/.git-popper/cache

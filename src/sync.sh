@@ -6,6 +6,7 @@ gitpopper_sync() {
   local repository_cache
   local workdir
   local temp_pwd
+  local file
 
   gitpopper_file="$1"
   repository_cache=
@@ -23,7 +24,7 @@ gitpopper_sync() {
         FROM)
           repository=$(echo "${line}" | cut -d" " -f2)
           repository_id=$(echo "${repository}" | tr -s '/:.' '-')
-          repository_cache="$HOME/.gitpopper/cache/${repository_id}"
+          repository_cache="$HOME/.git-popper/cache/${repository_id}"
           temp_pwd=$(pwd)
           cd "${repository_cache}" || exit 1
           git pull
@@ -34,6 +35,20 @@ gitpopper_sync() {
           repository_workdir="${repository_cache}/${workdir}"
           mkdir -p "${repository_workdir}"
           ;;
+        ADD)
+          echo "${line}"
+          file=$(echo "${line}" | cut -d" " -f2)
+          cp -f "${file}" "${repository_workdir}/${file}"
+          ;;
       esac
   done < "${gitpopper_file}"
+
+  temp_pwd=$(pwd)
+  cd "${repository_cache}" || exit 1
+  git add .
+  git commit -am "Synchronization" || true
+  git push
+  cd "${temp_pwd}" || exit 1
+
+  echo "Synchronization completed"
 }

@@ -1,4 +1,6 @@
 
-FROM https://github.com/francescobianco/git-popper.git
+FROM https://francescobianco@github.com/francescobianco/git-popper.git
 
 WORKDIR tests/fixtures/simple-remote
+
+ADD file.txt

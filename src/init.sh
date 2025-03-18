@@ -6,7 +6,7 @@ gitpopper_init() {
   local repository_cache
 
   gitpopper_file="$1"
-  repository_cache="$HOME/.gitpopper/cache"
+  repository_cache="$HOME/.git-popper/cache"
 
   mkdir -p "${repository_cache}"
 
