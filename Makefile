@@ -27,6 +27,9 @@ release: push
 test-init: build
 	@bash tests/bare/init-test.sh
 
+test-help: build
+	@./bin/git-popper --help
+
 test-sync: build
 	@rm -fr $$HOME/.git-popper/cache || true
 	@cd tests/fixtures/simple-local && ../../../bin/git-popper sync

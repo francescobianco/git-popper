@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-19T21:38:36Z
+# @build_date: 2025-03-19T21:54:07Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -16,6 +16,17 @@ embed() { return 0; }
 module init
 module sync
 
+usage() {
+  echo "Usage: git popper [COMMAND] [OPTIONS]"
+  echo ""
+  echo "Available options"
+  echo "  -h, --help    Print this help"
+  echo ""
+  echo "Available commands"
+  echo "  init    Init the '.gitpopper' file"
+  echo "  sync    Synchronize local and remote data"
+}
+
 main() {
   local list
 
@@ -25,11 +36,14 @@ main() {
           case "$1" in
             --list)
               list=true
-              shift
               ;;
             -o|--output)
               echo "Handling $1 with value: $2"
               shift
+              ;;
+            -h|--help)
+              usage
+              exit 1
               ;;
             *)
               echo "Unknown option: $1" >&2

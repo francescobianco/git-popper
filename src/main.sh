@@ -2,6 +2,17 @@
 module init
 module sync
 
+usage() {
+  echo "Usage: git popper [COMMAND] [OPTIONS]"
+  echo ""
+  echo "Available options"
+  echo "  -h, --help    Print this help"
+  echo ""
+  echo "Available commands"
+  echo "  init    Init the '.gitpopper' file"
+  echo "  sync    Synchronize local and remote data"
+}
+
 main() {
   local list
 
@@ -11,11 +22,14 @@ main() {
           case "$1" in
             --list)
               list=true
-              shift
               ;;
             -o|--output)
               echo "Handling $1 with value: $2"
               shift
+              ;;
+            -h|--help)
+              usage
+              exit 1
               ;;
             *)
               echo "Unknown option: $1" >&2
