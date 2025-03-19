@@ -1,2 +1,0 @@
-FROM https://francescobianco@github.com/francescobianco/git-popper
-WORKDIR 
