@@ -18,4 +18,6 @@ rm -f .gitpopper
   echo "tests/fixtures/fresh-remote"
 } | ../../../bin/git-popper init
 
+echo "ADD test.txt" >> .gitpopper
+
 ../../../bin/git-popper sync
