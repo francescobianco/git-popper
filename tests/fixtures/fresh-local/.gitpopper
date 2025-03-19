@@ -1,0 +1,2 @@
+FROM https://francescobianco@github.com/francescobianco/git-popper
+WORKDIR tests/fixtures/fresh-local
