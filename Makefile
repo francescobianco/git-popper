@@ -25,7 +25,7 @@ release: push
 ## =====
 
 test-init: build
-	@cd tests/fixtures/simple-local && ../../../bin/git-popper init
+	@bash tests/bare/init-test.sh
 
 test-sync: build
 	@rm -fr $$HOME/.git-popper/cache || true
