@@ -4,7 +4,7 @@ echo "===> Test: init-test"
 
 rm -f tests/fixtures/fresh-local/.gitpopper
 rm -fr tests/fixtures/fresh-remote
-git pull
+git pull --no-rebase
 git add .
 git commit -am "test"
 git push
