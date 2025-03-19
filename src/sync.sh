@@ -25,6 +25,7 @@ gitpopper_sync() {
           repository=$(echo "${line}" | cut -d" " -f2)
           repository_id=$(echo "${repository}" | tr -s '/:.' '-')
           repository_cache="$HOME/.git-popper/cache/${repository_id}"
+          repository_workdir="${repository_cache}"
           temp_pwd=$(pwd)
           cd "${repository_cache}" || exit 1
           git pull
@@ -42,6 +43,8 @@ gitpopper_sync() {
           ;;
       esac
   done < "${gitpopper_file}"
+
+  cp -f "${gitpopper_file}" "${repository_workdir}/.gitpopper"
 
   temp_pwd=$(pwd)
   cd "${repository_cache}" || exit 1

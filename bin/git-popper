@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-19T18:30:03Z
+# @build_date: 2025-03-19T18:40:43Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -143,6 +143,7 @@ gitpopper_sync() {
           repository=$(echo "${line}" | cut -d" " -f2)
           repository_id=$(echo "${repository}" | tr -s '/:.' '-')
           repository_cache="$HOME/.git-popper/cache/${repository_id}"
+          repository_workdir="${repository_cache}"
           temp_pwd=$(pwd)
           cd "${repository_cache}" || exit 1
           git pull
@@ -160,6 +161,8 @@ gitpopper_sync() {
           ;;
       esac
   done < "${gitpopper_file}"
+
+  cp -f "${gitpopper_file}" "${repository_workdir}/.gitpopper"
 
   temp_pwd=$(pwd)
   cd "${repository_cache}" || exit 1
