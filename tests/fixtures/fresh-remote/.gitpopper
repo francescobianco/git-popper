@@ -2,3 +2,4 @@ FROM https://francescobianco@github.com/francescobianco/git-popper
 WORKDIR tests/fixtures/fresh-remote
 ADD test.txt
 ADD test.txt
+ADD test.txt
