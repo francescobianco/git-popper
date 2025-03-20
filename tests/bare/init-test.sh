@@ -9,7 +9,6 @@ git add .
 git commit -am "test"
 git push
 
-
 cd tests/fixtures/fresh-local || exit 1
 rm -f .gitpopper
 
