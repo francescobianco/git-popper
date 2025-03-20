@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-20T09:18:54Z
+# @build_date: 2025-03-20T09:21:55Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -15,6 +15,8 @@ embed() { return 0; }
 
 module init
 module sync
+
+VERSION="0.1.0"
 
 usage() {
   echo "Usage: git popper [COMMAND] [OPTIONS]"
@@ -41,6 +43,10 @@ main() {
             -o|--output)
               echo "Handling $1 with value: $2"
               shift
+              ;;
+            -V|--version)
+              echo "git-popper ${VERSION}"
+              exit 0
               ;;
             -h|--help)
               usage

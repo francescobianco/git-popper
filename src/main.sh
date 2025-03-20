@@ -2,6 +2,8 @@
 module init
 module sync
 
+VERSION="0.1.0"
+
 usage() {
   echo "Usage: git popper [COMMAND] [OPTIONS]"
   echo ""
@@ -27,6 +29,10 @@ main() {
             -o|--output)
               echo "Handling $1 with value: $2"
               shift
+              ;;
+            -V|--version)
+              echo "git-popper ${VERSION}"
+              exit 0
               ;;
             -h|--help)
               usage
