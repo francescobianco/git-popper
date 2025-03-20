@@ -13,6 +13,8 @@ git push
 cd tests/fixtures/fresh-local || exit 1
 rm -f .gitpopper
 
+exit
+
 {
   echo "https://francescobianco@github.com/francescobianco/git-popper"
   echo "tests/fixtures/fresh-remote"
