@@ -1,6 +1,7 @@
 
 module init
 module sync
+module pull
 
 VERSION="0.1.0"
 
@@ -13,6 +14,7 @@ usage() {
   echo ""
   echo "Available commands"
   echo "  init    Init the '.gitpopper' file"
+  echo "  pull    Pull remote data based on '.gitpopper' file"
   echo "  sync    Synchronize local and remote data"
 }
 
@@ -74,6 +76,9 @@ main() {
   fi
 
   case "$1" in
+    pull)
+      gitpopper_pull "${gitpopper_file}"
+      ;;
     sync)
       gitpopper_init "${gitpopper_file}"
       gitpopper_sync "${gitpopper_file}"
