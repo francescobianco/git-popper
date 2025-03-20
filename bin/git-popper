@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-20T09:17:17Z
+# @build_date: 2025-03-20T09:18:54Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -20,7 +20,8 @@ usage() {
   echo "Usage: git popper [COMMAND] [OPTIONS]"
   echo ""
   echo "Available options"
-  echo "  -h, --help    Print this help"
+  echo "  -V, --version  Print version info and exit"
+  echo "  -h, --help     Print help information"
   echo ""
   echo "Available commands"
   echo "  init    Init the '.gitpopper' file"
