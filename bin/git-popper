@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-20T09:13:08Z
+# @build_date: 2025-03-20T09:14:53Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -60,10 +60,15 @@ main() {
 
     gitpopper_file="$PWD/.gitpopper"
 
-    if [ "$1" = "init" ]; then
-      gitpopper_init "${gitpopper_file}"
-      exit 0
-    fi
+    case "$1" in
+      init)
+        gitpopper_init "${gitpopper_file}"
+        ;;
+      help)
+        usage
+        exit 1
+        ;;
+    esac
 
     if [ ! -f "${gitpopper_file}" ]; then
       echo "No .gitpopper file found in the current directory"

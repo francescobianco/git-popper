@@ -46,10 +46,15 @@ main() {
 
     gitpopper_file="$PWD/.gitpopper"
 
-    if [ "$1" = "init" ]; then
-      gitpopper_init "${gitpopper_file}"
-      exit 0
-    fi
+    case "$1" in
+      init)
+        gitpopper_init "${gitpopper_file}"
+        ;;
+      help)
+        usage
+        exit 1
+        ;;
+    esac
 
     if [ ! -f "${gitpopper_file}" ]; then
       echo "No .gitpopper file found in the current directory"
