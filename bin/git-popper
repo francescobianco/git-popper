@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-20T09:38:47Z
+# @build_date: 2025-03-20T14:26:32Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -189,6 +189,8 @@ gitpopper_sync() {
         ADD)
           echo "${line}"
           file=$(echo "${line}" | cut -d" " -f2)
+          file_dir=$(dirname "${repository_workdir}/${file}")
+          mkdir -p "${file_dir}"
           cp -f "${file}" "${repository_workdir}/${file}"
           ;;
       esac

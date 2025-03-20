@@ -39,6 +39,8 @@ gitpopper_sync() {
         ADD)
           echo "${line}"
           file=$(echo "${line}" | cut -d" " -f2)
+          file_dir=$(dirname "${repository_workdir}/${file}")
+          mkdir -p "${file_dir}"
           cp -f "${file}" "${repository_workdir}/${file}"
           ;;
       esac
