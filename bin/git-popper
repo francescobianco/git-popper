@@ -3,7 +3,7 @@
 # @package: git-popper
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-02-01 develop)
-# @build_date: 2025-03-20T09:28:23Z
+# @build_date: 2025-03-20T09:38:47Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -211,7 +211,6 @@ gitpopper_pull() {
   local repository
   local repository_id
   local repository_cache
-  local workdir
   local temp_pwd
 
   gitpopper_file="$1"

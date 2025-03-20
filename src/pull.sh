@@ -4,7 +4,6 @@ gitpopper_pull() {
   local repository
   local repository_id
   local repository_cache
-  local workdir
   local temp_pwd
 
   gitpopper_file="$1"
